@@ -133,7 +133,7 @@ final class HomeWindowController: NSWindowController, NSWindowDelegate {
         let titles = compactStack(spacing: 4)
         titles.addArrangedSubview(makeLabel("Scrippy", size: 26, weight: .bold))
         titles.addArrangedSubview(makeLabel("Version \(appVersion)", size: 12, color: .secondaryLabelColor))
-        titles.addArrangedSubview(wrapping(makeLabel("Converts images to any format your Mac can write, right from Finder.", size: 13),
+        titles.addArrangedSubview(wrapping(makeLabel("Converts images to any format your Mac can write without leaving Finder.", size: 13),
                                            width: Self.contentWidth - iconSize - 18))
         header.addArrangedSubview(appIconView(size: iconSize))
         header.addArrangedSubview(titles)

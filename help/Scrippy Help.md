@@ -1,6 +1,6 @@
 # Welcome to Scrippy
 
-Scrippy converts images to any format your Mac can write, straight from Finder. It does the work with SIPS, the Scriptable Image Processing System built into macOS, which is where its name comes from.
+Scrippy converts images to any format your Mac can write without leaving Finder. It does the work with SIPS, the Scriptable Image Processing System built into macOS, which is where its name comes from.
 
 1. Select an image, several images, or a folder in Finder.
 2. Right-click the selection and choose **Quick Actions**, then **Convert with Scrippy**.

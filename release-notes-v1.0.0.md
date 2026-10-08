@@ -1,7 +1,7 @@
-Scrippy converts images to any format your Mac can write, straight from
-Finder. Select one image, several images, or a folder, right-click, and choose
-**Convert with Scrippy**. The converted copies are saved beside the originals,
-which are never changed.
+Scrippy converts images to any format your Mac can write without leaving
+Finder. Select one image, several images, or a folder. Right-click and choose
+**Convert with Scrippy**. The new copies are saved next to the originals, and
+the originals never change.
 
 ## What it does
 

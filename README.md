@@ -5,168 +5,169 @@
 ![Architecture](https://img.shields.io/badge/architecture-Apple%20silicon%20%7C%20Intel-black?logo=apple&logoColor=white)
 [![Release](https://img.shields.io/github/v/release/drabhikroy/scrippy)](https://github.com/drabhikroy/scrippy/releases/latest)
 
-<img src="Assets/png/AppIcon-256.png" width="128" height="128" alt="The Scrippy icon. One image file sits at the center, joined by lines to nine smaller image files spread around it, each with a different colored label.">
+Scrippy converts images to any format your Mac can write without leaving
+Finder.
 
-Scrippy converts images to any format your Mac can write, straight from
-Finder. Select one image, a handful, or a folder, right-click, and pick a
-format. The name comes from SIPS, the Scriptable Image Processing System built
-into macOS, which does the conversion.
+Everything runs on your Mac. No account is required and no server is used.
+Your images never leave your computer.
 
-Everything runs on your Mac. No account is required, no server is used, and
-your images never leave your computer.
+<img src="Assets/screenshots/choose-format.png" width="760" alt="The Convert with Scrippy window. On the left are the format menu set to JPEG, the image detail menu, a size estimate of about 642 KB, and notes on what JPEG is good for and what to consider. On the right is a preview of the galaxy image with its format, pixel size, and file size.">
 
 ## What it does
 
-Select images or a folder in Finder, right-click, and choose **Quick Actions**,
-then **Convert with Scrippy**. A small window asks for the format, and the
-converted copies are saved beside the originals. For the formats people reach
-for most, **Convert to JPEG with Scrippy**, **Convert to PNG with Scrippy**,
-and **Convert to HEIC with Scrippy** skip the window and convert in one step.
+Right-click images or a folder in Finder and choose **Convert with Scrippy**
+from the Quick Actions menu. A small window asks for the format. The new
+copies are saved next to the originals.
 
-<img src="Assets/screenshots/choose-format.png" width="760" alt="The Convert with Scrippy window. On the left, the format menu set to JPEG, the image detail menu, a size estimate of about 642 KB, and notes on what JPEG is good for and what to consider. On the right, a preview of the galaxy image with its format, pixel size, and file size.">
+Three optional actions skip the window for the most common formats. They are
+**Convert to JPEG with Scrippy**, **Convert to PNG with Scrippy**, and
+**Convert to HEIC with Scrippy**.
 
-- **Every format your Mac can write.** The menu is read from SIPS on your own
-  Mac each time. The six formats most people want come first, and new formats
-  from a macOS update appear on their own.
-- **A plain explanation of each choice.** The window says what the selected
-  format is good for and what to keep in mind, such as whether it keeps
-  transparency or how widely it is supported.
-- **An image detail setting for lossy formats.** JPEG, HEIC, AVIF, and JPEG
-  2000 offer six settings, from Automatic through Smaller file to Highest
-  detail. Scrippy remembers
-  the last format and setting you used.
-- **A size estimate before you convert.** The window converts one image to a
-  temporary file for the option on screen and tells you roughly how large the
-  result will be.
-- **Batches you can stop.** Several images, or every image directly inside a
-  folder, convert in one pass. A long batch shows its progress and can be
-  stopped between images.
-- **A small app for everything else.** Opened from the Applications folder,
-  Scrippy shows whether its Finder actions are in place, points you to an
-  example image to practice on, and holds the help, the version and license
-  details.
-- **A clean way out.** A separate uninstaller package removes everything the
-  installer added, and the Scrippy menu offers the same.
+- **Every format your Mac can write.** The list comes from your own Mac each
+  time. The six most popular formats come first. Formats added in a macOS
+  update appear on their own.
+- **A plain note on each format.** The window says what the format is good
+  for and what to keep in mind.
+- **A detail setting for compressed formats.** JPEG, HEIC, AVIF, and JPEG 2000
+  offer six settings from Automatic to Highest detail. Scrippy remembers your
+  last choice.
+- **A size estimate first.** Scrippy converts one sample image and tells you
+  about how large the result will be.
+- **Batches you can stop.** Several images convert in one pass, as do all the
+  images in a folder. A long batch shows its progress and can be stopped
+  between images.
+- **A small app for the rest.** Open Scrippy to check its Finder actions, try
+  an example image, and read the help.
+- **A clean way out.** An uninstaller removes everything the installer added.
+
+The name comes from SIPS, the Scriptable Image Processing System. It is built
+into macOS and does every conversion.
 
 ## What it does not do
 
-It never changes, moves, or replaces an original. When a name is taken, the
-copy gets `-1`, `-2`, and so on, so an earlier converted copy is never
-overwritten either.
+Scrippy never changes, moves, or replaces an original. When a name is taken
+the copy gets `-1`, `-2`, and so on. An earlier copy is never overwritten
+either.
 
-It does not look inside subfolders. A selected folder is read one level deep,
-so a conversion never reaches further than the files you can see.
+It does not look inside subfolders. A conversion never reaches past the files
+you can see in the folder you chose.
 
-It does not resize, crop, rotate, or edit images, and it does not create
-animated GIFs. It does not install an image library of its own. Every
-conversion is done by SIPS.
+It does not resize, crop, rotate, or edit images. It does not make animated
+GIFs. It installs no image library of its own.
 
 ## Requirements
 
-macOS 11 or later, on Apple silicon or Intel. Nothing else is needed. SIPS is
-part of macOS, and the installer does not ask for an administrator password.
+- macOS 11 or later
+- An Apple silicon or Intel Mac
+
+Nothing else is needed. SIPS is part of macOS. The installer does not ask for
+an administrator password.
 
 ## Install
 
-Download `Scrippy-1.0.0.pkg` from the [latest
-release](https://github.com/drabhikroy/scrippy/releases/latest) and open it.
-Everything is installed into your own account.
+1. Download `Scrippy-1.0.0.pkg` from the
+   [latest release](https://github.com/drabhikroy/scrippy/releases/latest).
+2. Open it and follow the steps. Everything installs into your own account.
+3. On the Installation Type page, choose your Quick Actions. **Convert with
+   Scrippy** is always installed. The three one-step actions are optional.
 
-The Installation Type page lists the Quick Actions. **Convert with Scrippy**
-is always installed. The three one-step actions are optional, and all of them
-are selected unless you clear them.
+<img src="Assets/screenshots/installer-choices.png" width="560" alt="The Installation Type page of the Scrippy installer. It lists four checked Quick Actions. Convert with Scrippy is always installed. Convert to JPEG, PNG, and HEIC with Scrippy can be cleared.">
 
-<img src="Assets/screenshots/installer-choices.png" width="560" alt="The Installation Type page of the Scrippy installer, listing four checked Quick Actions. Convert with Scrippy is always installed. Convert to JPEG, PNG, and HEIC with Scrippy can be cleared.">
+Scrippy itself is in the Applications folder inside your home folder. Open it
+to see which Finder actions are installed.
 
-Afterward, open **Scrippy** from the Applications folder in your home folder.
-It shows which Finder actions are installed and where to start.
+### Checking the download
 
-To remove Scrippy, open `Uninstall-Scrippy-1.0.0.pkg` from the same release,
-or choose **Uninstall Scrippy** from the Scrippy menu. Your images and the
-copies Scrippy made are not touched.
-
-`SHA256SUMS.txt` is published beside the packages. To check a download, put
-it and `SHA256SUMS.txt` in one folder and run:
+`SHA256SUMS.txt` is published with each release. Put it in the same folder as
+the package and run this command.
 
 ```bash
 shasum -a 256 -c SHA256SUMS.txt
 ```
 
+### Removing Scrippy
+
+Open `Uninstall-Scrippy-1.0.0.pkg` from the same release. You can also choose
+**Uninstall Scrippy** from the Scrippy menu. Your images and the copies
+Scrippy made stay where they are.
+
 ## Using Scrippy
 
 1. In Finder, select one image, several images, or a folder.
-2. Right-click the selection and choose **Quick Actions**, then **Convert with
-   Scrippy**.
-3. Pick a format, and an image detail setting if one is offered, then click
-   **Convert**.
+2. Right-click and choose **Quick Actions**, then **Convert with Scrippy**.
+3. Choose a format and an image detail setting if one is offered.
+4. Click **Convert**.
 
-<img src="Assets/screenshots/finder-quick-actions.png" width="520" alt="The Finder shortcut menu for an image, with Quick Actions open and Convert with Scrippy listed.">
+<img src="Assets/screenshots/finder-quick-actions.png" width="520" alt="The Finder shortcut menu for an image. Quick Actions is open and Convert with Scrippy is listed.">
 
-A notification confirms the result. If any file could not be converted, an
-alert says how many and offers **Show Log**, which shows the log in Finder.
-The log gives the reason for each one.
+A notification confirms the result. If a file cannot be converted, an alert
+offers **Show Log**. The log gives the reason for each failure.
 
-If the actions are missing from the Quick Actions menu, open Scrippy and click
-**Choose Which Actions Appear**.
+When the actions are missing from the Quick Actions menu, open Scrippy and
+click **Choose Which Actions Appear**.
 
-Help is built into the app. Choose **Scrippy Help** from the Help menu, or
-click the help button in the conversion window. The same text is installed as
-a page that opens in a browser, through **Open Help in Browser**.
+The help is built into the app. Choose **Scrippy Help** from the Help menu or
+click the help button in the conversion window. **Open Help in Browser** shows
+the same text as a web page.
 
 ## Your data
 
-Conversion and size estimates both run locally through SIPS. Scrippy makes no
-network connections. Links in the Help menu, the help, and the About panel
-open in your browser only when you choose them.
+Every conversion and estimate runs on your Mac through SIPS. Scrippy makes no
+network connections. A link in the help or the About panel opens your browser
+only when you click it.
 
-Scrippy writes only these files:
+| What Scrippy writes | Where | How long it stays |
+| --- | --- | --- |
+| Converted copies | Next to each original | Until you delete them |
+| Size estimates | A private temporary folder | Deleted once measured |
+| Failed conversions | `~/Library/Logs/Scrippy/scrippy.log` | Trimmed past one megabyte |
+| Your last format and setting | Scrippy's preferences | Until you uninstall |
 
-- Converted copies beside your originals. Each copy is written into a hidden
-  staging folder beside the original first and moved into place in one step,
-  then the staging folder is removed.
-- Temporary estimate files in a private folder. Each is deleted as soon as it
-  has been measured, and the folder is removed when the conversion ends.
-- A log at `~/Library/Logs/Scrippy/scrippy.log` that records failed
-  conversions and trims itself back once it passes one megabyte.
-- Your last format and detail setting, in Scrippy's preferences.
+Each copy is first written to a hidden folder next to the original. It is
+then moved into place in one step and the hidden folder is removed.
 
 ## Accessibility
 
-- Every window is built from standard macOS controls, so VoiceOver, Full
-  Keyboard Access, Increase Contrast, and Reduce Transparency work as they do
-  elsewhere
-- Status on the landing screen is shown by symbol shape as well as color, a
-  check for installed and a cross for missing
-- Menus, buttons, and the help topic list carry accessibility labels, and
-  decorative symbols are hidden from VoiceOver. The progress window announces
-  each change in its status
-- Return converts and Escape cancels or stops. Every menu command has its
-  usual shortcut, including Command W to close, Command F to search help,
-  Command P to print a help topic, and Command Question Mark for help
-- Notes, estimates, and help text are selectable, so any of it can be copied
-- The installer pages and the help page follow light and dark appearance and
-  meet WCAG 2.2 AA contrast. The help page has a skip link, a visible focus
-  ring, and honors Reduce Motion
+- **Standard controls.** Every window uses standard macOS controls. VoiceOver,
+  Full Keyboard Access, Increase Contrast, and Reduce Transparency work as they
+  do in other apps.
+- **Shape as well as color.** Status on the landing screen uses a check for
+  installed and a cross for missing.
+- **Labels.** Menus, buttons, and help topics carry accessibility labels.
+  Decorative symbols are hidden from VoiceOver. The progress window announces
+  each change.
+- **Keyboard.** Return converts. Escape cancels or stops. Command Question
+  Mark opens the help. Command F searches it and Command P prints a topic.
+- **Copyable text.** Notes, estimates, and help text can all be selected and
+  copied.
+- **Light and dark.** The installer pages and the help page follow your
+  appearance and meet WCAG 2.2 AA contrast. The help page also has a skip
+  link and a visible focus ring, and it honors Reduce Motion.
 
 ## How it works
 
-Each Quick Action is an Automator workflow that passes the Finder selection to
-a shell script. The script asks SIPS which files it can read and which formats
-it can write, then starts Scrippy.app to ask which format to use. The app
-answers with one line, the format and detail setting, and the script runs SIPS
-once for each image. The one-step actions pass their format to the script
-directly and never open the window.
+Each Quick Action is an Automator workflow. It passes the Finder selection to
+a shell script.
 
-The app never converts anything itself except the single temporary file
-behind each estimate. Its answer is checked against the list of formats the
-script built, so only a format SIPS reported as writable can be used. The
-script looks for the app in two fixed places only, the Applications folder in
-your home folder and the main Applications folder.
+1. The script asks SIPS which files it can read and which formats it can
+   write.
+2. It opens Scrippy.app to ask which format to use.
+3. The app answers with one line holding the format and detail setting.
+4. The script runs SIPS once for each image.
+
+The one-step actions pass their format straight to the script and never open
+the window.
+
+The app converts nothing itself except the temporary file behind each
+estimate. Its answer is checked against the list the script built, so only a
+format SIPS reported as writable can be used. The script looks for the app in
+two fixed places only. One is the Applications folder in your home folder and
+the other is the main Applications folder.
 
 ## Help
 
 The help source is [help/Scrippy Help.md](help/Scrippy%20Help.md). The app
-reads it directly, and `Scripts/make_help.py` turns it into the browser page
+reads it directly. `Scripts/make_help.py` turns it into the web page
 [help/Scrippy Help.html](help/Scrippy%20Help.html).
 
 ## For developers
@@ -176,21 +177,23 @@ reads it directly, and `Scripts/make_help.py` turns it into the browser page
 | Path | Holds |
 | --- | --- |
 | `src/scrippy.sh` | The conversion engine the Finder actions run |
-| `package/app/Sources/` | Scrippy.app: the landing screen, conversion window, progress window, help window, menus, and the uninstall command |
-| `package/app/Info.plist` | The app bundle's name, version, and copyright |
+| `package/app/Sources/` | Scrippy.app with its windows, menus, and uninstall command |
+| `package/app/Info.plist` | The app's name, version, and copyright |
 | `workflow/` | The main Quick Action. The build makes the one-step actions from it |
-| `package/` | Installer layout, pages, backgrounds, and the postinstall script |
-| `package/uninstall/` | The uninstaller package: its pages and the script that removes Scrippy |
-| `help/` | The help source and the page generated from it |
-| `Assets/` | Icon sources and rendered PNGs, see [Assets/README.md](Assets/README.md) |
-| `Scripts/` | Generators for the icon, the help page, and the license pane, plus the screenshot cleaner and the house writing gate |
-| `tests/` | Engine and project tests, with stand-ins for SIPS, osascript, and the app |
+| `package/` | The installer layout, pages, backgrounds, and postinstall script |
+| `package/uninstall/` | The uninstaller pages and the script that removes Scrippy |
+| `help/` | The help source and the web page made from it |
+| `Assets/` | Icon sources, rendered PNGs, and screenshots. See [Assets/README.md](Assets/README.md) |
+| `Scripts/` | Generators for the icon, help page, and license pane, plus the screenshot cleaner and the writing gate |
+| `tests/` | Engine and project tests with stand-ins for SIPS, osascript, and the app |
 
 ### Dependencies
 
-Building needs Xcode or the Command Line Tools for `swiftc`, `lipo`, `python3`,
-and the packaging tools. Tests need Python 3 and Bash. Rebuilding the icons
-needs the `cairosvg` and `Pillow` Python packages.
+| Task | Needs |
+| --- | --- |
+| Building | Xcode or the Command Line Tools |
+| Tests | Python 3 and Bash |
+| Rebuilding the icons | The `cairosvg` and `Pillow` Python packages |
 
 ### Running from source
 
@@ -199,8 +202,8 @@ git clone https://github.com/drabhikroy/scrippy.git
 cd scrippy
 ```
 
-Compile the app into the place the engine looks for it, then run the engine
-against your real SIPS:
+Compile the app into the place the engine looks for it. Then run the engine
+with your real SIPS.
 
 ```bash
 mkdir -p ~/Applications/Scrippy.app/Contents/MacOS ~/Applications/Scrippy.app/Contents/Resources
@@ -209,7 +212,7 @@ xcrun swiftc -framework AppKit -framework QuickLookThumbnailing package/app/Sour
 bash src/scrippy.sh Example/*.png
 ```
 
-To try a one-step action instead:
+To try a one-step action instead, pass its format.
 
 ```bash
 bash src/scrippy.sh --to png Example/*.png
@@ -223,43 +226,43 @@ python3 Scripts/standards_gate.py
 ```
 
 The engine tests run the real script with stand-ins for SIPS, osascript, and
-the Scrippy app, so they pass on Linux as well as macOS. A security group in
-them covers symbolic links at the destination, names with line breaks, names
-that look like options, and staging cleanup. The project tests check that the
-help page matches its source. The gate enforces the house writing rules
-described in [CONTRIBUTING.md](CONTRIBUTING.md).
+the app. They pass on Linux as well as macOS. A security group covers
+symbolic links at the destination, names with line breaks, names that look
+like options, and staging cleanup.
+
+The project tests check that the help page matches its source. The gate
+enforces the house writing rules in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Building distributable packages
 
-Double-click **Make Public Installer.command**. It builds Scrippy.app as a
-universal binary and makes the one-step actions from the main workflow. It
-then builds two packages, signs and notarizes each, staples the tickets,
-checks them with Gatekeeper, and leaves them in `Release/` with
-`SHA256SUMS.txt`:
+Double-click **Make Public Installer.command**. It builds Scrippy.app for
+Apple silicon and Intel. It makes the one-step actions from the main
+workflow. It then signs, notarizes, and staples two packages and checks them
+with Gatekeeper.
 
-- `Scrippy-VERSION.pkg` installs Scrippy. The app and the main action go in
-  one component, and each one-step action goes in its own, so people can
-  choose them on the Installation Type page.
-- `Uninstall-Scrippy-VERSION.pkg` carries no files. Its one script removes
-  what the installer placed.
+| Package | What it does |
+| --- | --- |
+| `Scrippy-VERSION.pkg` | Installs Scrippy. Each one-step action is its own component, so people can choose them |
+| `Uninstall-Scrippy-VERSION.pkg` | Carries no files. Its one script removes what the installer placed |
 
-The version comes from the `VERSION` file alone.
+Both land in `Release/` with `SHA256SUMS.txt`. The version comes from the
+`VERSION` file alone.
 
-To check the installer pages without signing or notarizing, run it from
-Terminal with `--preview`. That leaves unsigned copies of both packages in
-`dist/` and opens the installer.
+To check the installer pages without signing or notarizing, run the command
+from Terminal with `--preview`. Unsigned copies of both packages go to
+`dist/` and the installer opens.
 
 ### Code signing and verification
 
 The build uses the first Developer ID Application and Developer ID Installer
-certificates in your keychain, and the notary profile named **Scrippy**.
-Create the profile once with:
+certificates in your keychain. It notarizes with the keychain profile named
+**Scrippy**. Create that profile once.
 
 ```bash
 xcrun notarytool store-credentials "Scrippy"
 ```
 
-To check a finished package:
+To check a finished package, run these commands.
 
 ```bash
 pkgutil --check-signature Release/Scrippy-1.0.0.pkg
@@ -270,21 +273,20 @@ spctl --assess --type install --verbose=2 Release/Uninstall-Scrippy-1.0.0.pkg
 ## Contributing
 
 Conventions, tests, and house writing rules are in
-[CONTRIBUTING.md](CONTRIBUTING.md). Security reports go to the address in
+[CONTRIBUTING.md](CONTRIBUTING.md). To report a security problem, see
 [SECURITY.md](SECURITY.md).
 
 ## Releases
 
-What changed in each release is in [CHANGELOG.md](CHANGELOG.md). The
-installer and uninstaller packages are on the
-[Releases](https://github.com/drabhikroy/scrippy/releases) page, with a
-`SHA256SUMS.txt` beside them.
+Each release lists its changes in [CHANGELOG.md](CHANGELOG.md). The installer,
+the uninstaller, and `SHA256SUMS.txt` are on the
+[Releases](https://github.com/drabhikroy/scrippy/releases) page.
 
 ## Credits and background
 
 The example image of Messier 88 is credited to ESA/Hubble and NASA, D. Thilker
-and the MAUVE-HST Team, and is used under [CC BY
-4.0](https://creativecommons.org/licenses/by/4.0/). The source is the
+and the MAUVE-HST Team. It is used under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) and comes from the
 [ESA/Hubble picture of the month](https://esahubble.org/images/potm2605a/).
 
 ## License
