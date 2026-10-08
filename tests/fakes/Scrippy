@@ -1,0 +1,21 @@
+#!/bin/bash
+# The engine may run with no PATH at all, so the stand-ins set their own.
+PATH=/usr/bin:/bin
+#
+# Stands in for the compiled conversion window. In choice mode it keeps a copy
+# of the menu files for the test to inspect and answers with FAKE_CHOICE. In
+# progress mode it returns at once, as the real window does when work ends
+# before its two second wait.
+
+mode="$1"
+shift
+if [[ "$mode" == "choice" ]]; then
+  if [[ -n "${FAKE_UI_DIR:-}" ]]; then
+    cp "$1" "$FAKE_UI_DIR/choices.tsv"
+    cp "$2" "$FAKE_UI_DIR/quality.tsv"
+    printf '%s\n' "$@" > "$FAKE_UI_DIR/args.txt"
+  fi
+  printf '%b\n' "${FAKE_CHOICE:-jpeg\t75}"
+  exit "${FAKE_UI_EXIT:-0}"
+fi
+exit 0

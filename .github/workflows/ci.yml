@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Checking out and building needs nothing but read access. Stating that here
+# means a pull request from a fork cannot borrow a wider default token.
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Engine tests and writing rules
+    runs-on: ubuntu-latest
+    steps:
+      # Pinned to a commit rather than a moving tag, which whoever controls the
+      # action repository could repoint at different code.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check shell scripts
+        run: shellcheck -s bash src/scrippy.sh "Make Public Installer.command" package/public-scripts/postinstall package/uninstall/scripts/postinstall tests/fakes/*
+
+      - name: Run tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: House writing rules
+        run: python3 Scripts/standards_gate.py
+
+  app:
+    name: Universal app build
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      # The same commands the release build uses, without signing. An app that
+      # fails to compile for either architecture or for macOS 11 fails here
+      # rather than on release day.
+      - name: Compile Scrippy.app for Apple silicon and Intel
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          for arch in arm64 x86_64; do
+            xcrun swiftc -O -target "$arch-apple-macos11.0" -framework AppKit -framework QuickLookThumbnailing package/app/Sources/*.swift -o "out/Scrippy-$arch"
+          done
+          lipo -create out/Scrippy-arm64 out/Scrippy-x86_64 -output out/Scrippy
+          lipo -info out/Scrippy
+
+      - name: Run tests with the macOS shell
+        run: python3 -m unittest discover -s tests -v

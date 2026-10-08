@@ -1,0 +1,15 @@
+#!/bin/bash
+# The engine may run with no PATH at all, so the stand-ins set their own.
+PATH=/usr/bin:/bin
+#
+# Stands in for /usr/bin/osascript. It records the arguments and any script
+# read from standard input, then exits with FAKE_OSA_EXIT, which lets a test
+# act as a person pressing Cancel in a dialog.
+
+{
+  printf -- '--- osascript %s\n' "$*"
+  if [[ "${1:-}" == "-" ]]; then
+    cat
+  fi
+} >> "${FAKE_OSA_LOG:-/dev/null}"
+exit "${FAKE_OSA_EXIT:-0}"

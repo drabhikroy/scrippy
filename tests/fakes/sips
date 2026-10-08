@@ -1,0 +1,86 @@
+#!/bin/bash
+# The engine may run with no PATH at all, so the stand-ins set their own.
+PATH=/usr/bin:/bin
+#
+# Stands in for /usr/bin/sips. A test image is a text file whose first line
+# is "IMG:<format>". Words later in the file steer the outcome: FAIL makes the
+# conversion fail, EMPTY makes it succeed while writing nothing, and SILENT
+# makes the format query exit cleanly without a format line, as real SIPS
+# sometimes does on files it does not understand.
+
+printf '%s\n' "$*" >> "${FAKE_LOG:-/dev/null}"
+
+if [[ "${1:-}" == "--formats" ]]; then
+  cat <<'TABLE'
+Supported Formats:
+-------------------------------------------
+com.apple.atx                    --     Readable Writable
+public.jpeg                      jpeg   Readable Writable
+public.png                       png    Readable Writable
+public.heic                      heic   Readable Writable
+public.tiff                      tiff   Readable Writable
+com.compuserve.gif               gif    Readable Writable
+public.jpeg-2000                 jp2    Readable Writable
+com.adobe.raw-image              dng    Readable
+org.khronos.ktx2                 --     Readable Writable
+public.png-alias                 png    Readable Writable
+TABLE
+  exit 0
+fi
+
+if [[ "${1:-}" == "-g" && "${2:-}" == "format" ]]; then
+  file="$3"
+  first="$(head -n 1 "$file" 2>/dev/null)"
+  if grep -q SILENT "$file" 2>/dev/null; then
+    echo "$file"
+    exit 0
+  fi
+  if [[ "$first" == IMG:* ]]; then
+    printf '%s\n  format: %s\n' "$file" "${first#IMG:}"
+    exit 0
+  fi
+  echo "Error: Unable to get format of $file" >&2
+  exit 13
+fi
+
+# Every test image measures 1200 by 800 unless it says NOSIZE.
+if [[ "${1:-}" == "-g" && "${2:-}" == "pixelWidth" ]]; then
+  file="${5:-}"
+  printf '%s\n' "$file"
+  if ! grep -q NOSIZE "$file" 2>/dev/null; then
+    printf '  pixelWidth: 1200\n  pixelHeight: 800\n'
+  fi
+  exit 0
+fi
+
+if [[ "${1:-}" == "-s" && "${2:-}" == "format" ]]; then
+  format="$3"
+  shift 3
+  quality="none"
+  if [[ "${1:-}" == "-s" && "${2:-}" == "formatOptions" ]]; then
+    quality="$3"
+    shift 3
+  fi
+  source="$1"
+  out="$3"
+  if grep -q FAIL "$source"; then
+    echo "Error: could not write $out" >&2
+    exit 1
+  fi
+  if grep -q EMPTY "$source"; then
+    : > "$out"
+    exit 0
+  fi
+  printf 'CONVERTED format=%s quality=%s from=%s\n' "$format" "$quality" "$source" > "$out"
+  # STOP plays the person clicking Stop in the progress window after this
+  # image, by creating the request file the engine watches for.
+  if grep -q STOP "$source"; then
+    for work in "${TMPDIR:-/tmp}"/scrippy.*; do
+      : > "$work/stop.request"
+    done
+  fi
+  exit 0
+fi
+
+echo "fake sips: unexpected arguments: $*" >&2
+exit 64

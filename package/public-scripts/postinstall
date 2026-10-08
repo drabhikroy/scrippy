@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Runs after the package is installed into the current user's home folder.
+# The only job left is to tell macOS the new Quick Actions exist.
+
+set -euo pipefail
+
+# The home folder comes from Directory Services rather than $HOME, because
+# Installer does not promise what environment a package script inherits.
+USER_NAME="$(/usr/bin/id -un)"
+USER_HOME="$(/usr/bin/dscl . -read "/Users/$USER_NAME" NFSHomeDirectory | /usr/bin/cut -d' ' -f2-)"
+
+if [[ -z "$USER_HOME" || ! -d "$USER_HOME" ]]; then
+    /usr/bin/printf 'The user home folder could not be found.\n' >&2
+    exit 1
+fi
+
+# A failed refresh is not a failed install. The Quick Actions still appear
+# after the next login, so the result is ignored.
+"$USER_HOME/Applications/Scrippy.app/Contents/MacOS/Scrippy" refresh-services >/dev/null 2>&1 || true
+exit 0

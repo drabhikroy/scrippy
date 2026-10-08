@@ -1,0 +1,14 @@
+* text=auto eol=lf
+
+*.sh       text eol=lf
+*.command  text eol=lf
+postinstall text eol=lf
+*.swift    text diff=swift
+*.md       text
+*.plist    text
+*.wflow    text
+*.xml      text
+*.png      binary
+
+*.md       linguist-documentation
+help/**    linguist-documentation

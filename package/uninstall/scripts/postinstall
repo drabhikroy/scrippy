@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# The whole job of the uninstall package. It carries no files, so Installer
+# only runs this script, in the account of the person who opened it. Every
+# path below is one the Scrippy installer places, and nothing is found by
+# searching, so the script cannot reach a file Scrippy did not put there.
+
+set -u
+
+# The home folder comes from Directory Services rather than $HOME, because
+# Installer does not promise what environment a package script inherits.
+USER_NAME="$(/usr/bin/id -un)"
+USER_HOME="$(/usr/bin/dscl . -read "/Users/$USER_NAME" NFSHomeDirectory | /usr/bin/cut -d' ' -f2-)"
+
+if [[ -z "$USER_HOME" || "$USER_HOME" == "/" || ! -d "$USER_HOME" ]]; then
+    /usr/bin/printf 'The user home folder could not be found.\n' >&2
+    exit 1
+fi
+
+# A conversion window left open would otherwise keep running from a bundle
+# that no longer exists.
+/usr/bin/pkill -x -u "$USER_NAME" Scrippy >/dev/null 2>&1 || true
+
+for item in \
+    "Applications/Scrippy.app" \
+    "Library/Services/Convert with Scrippy.workflow" \
+    "Library/Services/Convert to JPEG with Scrippy.workflow" \
+    "Library/Services/Convert to PNG with Scrippy.workflow" \
+    "Library/Services/Convert to HEIC with Scrippy.workflow" \
+    "Library/Application Support/Scrippy" \
+    "Library/Logs/Scrippy"; do
+    /bin/rm -rf "${USER_HOME:?}/$item"
+done
+
+# Forgetting the install records keeps a later install from being treated as
+# an upgrade of files that are gone. One-step actions that were never chosen
+# have no record, which pkgutil reports and this ignores.
+for identifier in com.scrippy.pkg com.scrippy.quickaction.jpeg.pkg com.scrippy.quickaction.png.pkg com.scrippy.quickaction.heic.pkg; do
+    /usr/sbin/pkgutil --volume "$USER_HOME" --forget "$identifier" >/dev/null 2>&1 || true
+done
+
+# Finder keeps listing removed Quick Actions until the Services list is
+# rebuilt.
+/System/Library/CoreServices/pbs -update >/dev/null 2>&1 || true
+exit 0

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>Scrippy</title>
+    <organization>com.scrippy</organization>
+    <domains enable_localSystem="false" enable_currentUserHome="true" enable_anywhere="false"/>
+    <options customize="always" require-scripts="true" hostArchitectures="arm64,x86_64"/>
+    <allowed-os-versions>
+        <os-version min="11.0"/>
+    </allowed-os-versions>
+    <background file="background.png" mime-type="image/png" alignment="bottomleft" scaling="none"/>
+    <background-darkAqua file="background-dark.png" mime-type="image/png" alignment="bottomleft" scaling="none"/>
+    <welcome file="welcome.html" mime-type="text/html"/>
+    <license file="License.rtf" mime-type="text/rtf"/>
+    <conclusion file="conclusion.html" mime-type="text/html"/>
+    <choices-outline>
+        <line choice="scrippy"/>
+        <line choice="jpeg"/>
+        <line choice="png"/>
+        <line choice="heic"/>
+    </choices-outline>
+    <choice id="scrippy" title="Convert with Scrippy" start_selected="true" selected="true"
+            description="Required. The Scrippy app and the main Quick Action, which lets you choose from every format your Mac can write.">
+        <pkg-ref id="com.scrippy.pkg"/>
+    </choice>
+    <choice id="jpeg" title="Convert to JPEG with Scrippy" start_selected="true"
+            description="Optional. A Quick Action that converts straight to JPEG. No window opens.">
+        <pkg-ref id="com.scrippy.quickaction.jpeg.pkg"/>
+    </choice>
+    <choice id="png" title="Convert to PNG with Scrippy" start_selected="true"
+            description="Optional. A Quick Action that converts straight to PNG. No window opens.">
+        <pkg-ref id="com.scrippy.quickaction.png.pkg"/>
+    </choice>
+    <choice id="heic" title="Convert to HEIC with Scrippy" start_selected="true"
+            description="Optional. A Quick Action that converts straight to HEIC. No window opens.">
+        <pkg-ref id="com.scrippy.quickaction.heic.pkg"/>
+    </choice>
+    <pkg-ref id="com.scrippy.pkg" version="__VERSION__" onConclusion="none">Scrippy.pkg</pkg-ref>
+    <pkg-ref id="com.scrippy.quickaction.jpeg.pkg" version="__VERSION__" onConclusion="none">Scrippy-jpeg.pkg</pkg-ref>
+    <pkg-ref id="com.scrippy.quickaction.png.pkg" version="__VERSION__" onConclusion="none">Scrippy-png.pkg</pkg-ref>
+    <pkg-ref id="com.scrippy.quickaction.heic.pkg" version="__VERSION__" onConclusion="none">Scrippy-heic.pkg</pkg-ref>
+</installer-gui-script>

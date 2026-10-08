@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Output of Make Public Installer.command
+dist/
+Release/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Delivery archives
+scrippy-*.zip

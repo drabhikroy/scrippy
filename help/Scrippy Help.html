@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrippy Help</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff; --text: #1d1d1f; --muted: #5b5b60; --panel: #f5f5f7;
+  --border: #d2d2d7; --accent: #0066cc; --note: #eef4fc;
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #1c1c1e; --text: #f5f5f7; --muted: #b8b8bd; --panel: #2c2c2e;
+          --border: #48484a; --accent: #78b7ff; --note: #22324a; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.skip { position: absolute; left: 1rem; top: -4rem; padding: 0.6rem 1rem; background: var(--bg);
+        border: 1px solid var(--border); border-radius: 8px; z-index: 2; }
+.skip:focus { top: 1rem; }
+.layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+nav { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto;
+      padding: 28px 18px; background: var(--panel); border-right: 1px solid var(--border); }
+nav .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+nav .brand img { width: 44px; height: 44px; }
+nav .brand strong { font-size: 1.1rem; }
+nav ol { list-style: none; margin: 0; padding: 0; }
+nav li a { display: block; padding: 7px 10px; border-radius: 8px; color: var(--text);
+           text-decoration: none; min-height: 32px; }
+nav li a:hover, nav li a:focus-visible { background: var(--border); }
+main { max-width: 760px; padding: 36px 48px 64px; }
+section { padding: 8px 0 28px; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: 0; }
+h2 { font-size: 1.7rem; line-height: 1.2; margin: 24px 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 1.12rem; margin: 22px 0 6px; }
+p, li { max-width: 68ch; }
+li { margin: 6px 0; }
+.note { padding: 14px 16px; border-left: 4px solid var(--accent); background: var(--note); border-radius: 8px; }
+code { padding: 0.1em 0.35em; border-radius: 5px; background: var(--panel);
+       font: 0.9em ui-monospace, SFMono-Regular, Menlo, monospace; }
+figure { margin: 18px 0; }
+figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+footer { color: var(--muted); font-size: 0.9rem; padding-top: 20px; }
+@media (max-width: 760px) {
+  .layout { display: block; }
+  nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  main { padding: 24px 20px 48px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+@media print {
+  nav, .skip { display: none; }
+  .layout { display: block; }
+  main { max-width: none; padding: 0; }
+  section { break-inside: avoid-page; }
+  a { color: inherit; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to help</a>
+<div class="layout">
+<nav aria-label="Help topics">
+<div class="brand"><img src="data:image/png;base64,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" alt=""><strong>Scrippy Help</strong></div>
+<ol>
+<li><a href="#welcome-to-scrippy">Welcome to Scrippy</a></li>
+<li><a href="#converting-images">Converting images</a></li>
+<li><a href="#choosing-a-format">Choosing a format</a></li>
+<li><a href="#image-detail-and-file-size">Image detail and file size</a></li>
+<li><a href="#size-estimates">Size estimates</a></li>
+<li><a href="#progress-and-stopping">Progress and stopping</a></li>
+<li><a href="#menus-and-shortcuts">Menus and shortcuts</a></li>
+<li><a href="#about-sips">About SIPS</a></li>
+<li><a href="#example-image">Example image</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#privacy-and-security">Privacy and security</a></li>
+<li><a href="#uninstalling-scrippy">Uninstalling Scrippy</a></li>
+<li><a href="#version-and-license">Version and license</a></li>
+</ol>
+</nav>
+<main id="main">
+<section id="welcome-to-scrippy" aria-labelledby="welcome-to-scrippy-title">
+<h2 id="welcome-to-scrippy-title">Welcome to Scrippy</h2>
+<p>Scrippy converts images to any format your Mac can write, straight from Finder. It does the work with SIPS, the Scriptable Image Processing System built into macOS, which is where its name comes from.</p>
+<ol><li>Select an image, several images, or a folder in Finder.</li><li>Right-click the selection and choose <strong>Quick Actions</strong>, then <strong>Convert with Scrippy</strong>.</li><li>Choose a format and click <strong>Convert</strong>. The new copy is saved beside the original.</li></ol>
+<p class="note"><strong>Your originals are never changed.</strong> If a name is already taken, Scrippy adds -1, -2, and so on, so an earlier copy is never replaced either.</p>
+<p>This help is also available as a page you can open in a browser. Choose <strong>Open Help in Browser</strong> from the Help menu.</p>
+</section>
+<section id="converting-images" aria-labelledby="converting-images-title">
+<h2 id="converting-images-title">Converting images</h2>
+<p>Scrippy adds these entries to the <strong>Quick Actions</strong> menu in Finder. The three one-step actions are optional. The installer lets you choose which of them to add.</p>
+<ul><li><strong>Convert with Scrippy</strong> opens the conversion window, where you can choose any format your Mac can write, pick an image detail setting, and see a size estimate first.</li><li><strong>Convert to JPEG with Scrippy</strong> converts straight to JPEG with the standard detail setting. No window opens.</li><li><strong>Convert to PNG with Scrippy</strong> converts straight to PNG.</li><li><strong>Convert to HEIC with Scrippy</strong> converts straight to HEIC with the standard detail setting.</li></ul>
+<h3>Several images or a folder</h3>
+<p>Select two or more images, or a folder, before choosing an action. Every image is converted to the same format. Scrippy looks only at the files directly inside a selected folder and leaves subfolders alone, so a conversion never reaches further than the files you can see.</p>
+<h3>Files Scrippy cannot read</h3>
+<p>If a file you selected is not an image SIPS can read, Scrippy says so before converting anything, and you can continue with the rest or cancel. Other files inside a selected folder, such as documents, are passed over quietly.</p>
+<h3>Showing or hiding the actions</h3>
+<p>Any action you do not use can be hidden. In Finder, right-click a file, choose <strong>Quick Actions</strong>, then <strong>Customize</strong>, and turn actions on or off. The Scrippy app shows which actions are installed and has a button that opens these settings.</p>
+<p>To add a one-step action you left out, run the installer again and select it on the Installation Type page.</p>
+</section>
+<section id="choosing-a-format" aria-labelledby="choosing-a-format-title">
+<h2 id="choosing-a-format-title">Choosing a format</h2>
+<p>The format menu is built from what SIPS on your Mac reports it can write, so it can include formats added in a macOS update. The six formats most people want are listed first.</p>
+<ul><li><strong>JPEG</strong> suits photos, sharing, and broad app support. Compression is lossy, and transparency is not kept.</li><li><strong>PNG</strong> suits screenshots, text, graphics, and transparency. Photos are often larger as PNG.</li><li><strong>HEIC</strong> suits photos on Apple devices with small files. Some websites and older apps do not accept it.</li><li><strong>AVIF</strong> makes very small photo files and can keep transparency. Support in older apps is limited.</li><li><strong>TIFF</strong> suits editing, print work, and archiving. Files are usually large.</li><li><strong>PDF</strong> puts the image into a document. Image apps and websites may treat it differently from an image file.</li><li><strong>JPEG 2000</strong> makes high quality compressed images, but few apps outside of specialized work open it.</li><li><strong>GIF</strong> suits simple graphics with few colors. It is limited to 256 colors, and Scrippy does not create animation.</li><li><strong>Texture and icon formats</strong> such as ASTC, KTX, ICNS, and ICO are for specialized graphics work and are rarely right for photos.</li></ul>
+<p>The window shows what the selected format is good for and what to keep in mind, and updates as you change your choice. Scrippy remembers the last format and detail setting you converted with.</p>
+<p>The preview on the right shows the image you are converting, with its format, size in pixels, and file size. When several images are selected, the caption gives how many there are and their total size, and the preview shows the largest one by name.</p>
+</section>
+<section id="image-detail-and-file-size" aria-labelledby="image-detail-and-file-size-title">
+<h2 id="image-detail-and-file-size-title">Image detail and file size</h2>
+<p>JPEG, HEIC, AVIF, and JPEG 2000 can trade a smaller file for some fine detail. When one of them is selected, an <strong>Image detail</strong> menu appears under the format menu.</p>
+<ul><li><strong>Automatic</strong> uses the standard SIPS setting.</li><li><strong>Smaller file</strong> compresses most. Fine textures and edges may look softer.</li><li><strong>Balanced</strong> is a middle choice for everyday photos and sharing.</li><li><strong>High quality</strong> keeps more detail with a larger file.</li><li><strong>Very high quality</strong> keeps still more detail. The file usually grows.</li><li><strong>Highest detail</strong> compresses least. The difference from the step before it may be hard to see.</li></ul>
+<p>The one-step actions always use <strong>Automatic</strong>.</p>
+</section>
+<section id="size-estimates" aria-labelledby="size-estimates-title">
+<h2 id="size-estimates-title">Size estimates</h2>
+<p>Compression depends on the picture itself, so an estimate cannot come from the file type alone. When you choose an option, Scrippy converts one image to a temporary file and measures it.</p>
+<ul><li><strong>For one image</strong>, the estimate comes from converting that image with the settings shown.</li><li><strong>For several images or a folder</strong>, Scrippy converts the largest one and scales the result to the total size of the selection. Different pictures compress differently, so the final total can differ.</li></ul>
+<p>Temporary files stay on your Mac. Each one is deleted as soon as it has been measured, and the folder holding them is removed when the conversion ends.</p>
+</section>
+<section id="progress-and-stopping" aria-labelledby="progress-and-stopping-title">
+<h2 id="progress-and-stopping-title">Progress and stopping</h2>
+<p>A conversion that finishes quickly shows no progress window. If it is still running after about two seconds, a window appears with the number of images done.</p>
+<p>For several images, the window has a <strong>Stop</strong> button. Scrippy finishes the image it is working on, so no half written copy is left, and then stops. The alert afterward says how many images were not started.</p>
+<p>When everything converts, a notification confirms it. If anything could not be converted, an alert says how many and offers <strong>Show Log</strong>, which shows the log in Finder. The log gives the reason for each one.</p>
+</section>
+<section id="menus-and-shortcuts" aria-labelledby="menus-and-shortcuts-title">
+<h2 id="menus-and-shortcuts-title">Menus and shortcuts</h2>
+<p>While the conversion window, this help, or the Scrippy app is open, Scrippy has a menu bar like any other app.</p>
+<ul><li><strong>Scrippy</strong> includes About Scrippy, Uninstall Scrippy, and Quit. Quitting from the conversion window cancels the conversion.</li><li><strong>Edit</strong> has Copy, for taking any note, estimate, or passage of help, and Find, which moves to the search field in this window.</li><li><strong>Window</strong> has Minimize and Close. Closing the conversion window cancels it.</li><li><strong>Help</strong> has Scrippy Help, Open Help in Browser, Latest Version on GitHub, and View License.</li></ul>
+<p>In the conversion window, Return converts and Escape cancels. Command Question Mark opens this help from anywhere in Scrippy, and Command P prints the topic you are reading.</p>
+</section>
+<section id="about-sips" aria-labelledby="about-sips-title">
+<h2 id="about-sips-title">About SIPS</h2>
+<p>SIPS is the Scriptable Image Processing System, an image tool Apple includes with macOS at <code>/usr/bin/sips</code>. Scrippy does not install an image library of its own. Every conversion is done by SIPS, so the formats on offer and the results match what your version of macOS supports.</p>
+<p>For the full SIPS reference, open Terminal and run <code>man sips</code>. To see the formats your Mac can read and write, run <code>sips --formats</code>. Apple also describes SIPS in its <a href="https://developer.apple.com/library/archive/documentation/OpenSource/Conceptual/ShellScripting/StartingPoints/StartingPoints.html" rel="noopener noreferrer">Shell Scripting Primer</a>.</p>
+</section>
+<section id="example-image" aria-labelledby="example-image-title">
+<h2 id="example-image-title">Example image</h2>
+<p>A photograph of Messier 88, a spiral galaxy, is installed for practice. It has plenty of fine detail, which makes differences between formats and detail settings easy to see. Open the Scrippy app and click <strong>Show Example Image in Finder</strong> to find it.</p>
+<figure><img src="Example/Example Image - Messier 88.png" alt="Messier 88, a tilted spiral galaxy with a bright center, blue spiral arms, dark dust lanes, and pink star forming regions against a dark background." loading="lazy"></figure>
+<p>Image credit ESA/Hubble and NASA, D. Thilker and the MAUVE-HST Team, from the <a href="https://esahubble.org/images/potm2605a/" rel="noopener noreferrer">ESA/Hubble picture of the month</a>, used under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">CC BY 4.0</a>.</p>
+</section>
+<section id="troubleshooting" aria-labelledby="troubleshooting-title">
+<h2 id="troubleshooting-title">Troubleshooting</h2>
+<h3>The actions are not in the Quick Actions menu</h3>
+<p>Open the Scrippy app from the Applications folder in your home folder. It lists each action and shows whether it is installed. If an action is installed but missing from Finder, click <strong>Choose Which Actions Appear</strong> and turn it on. If <strong>Convert with Scrippy</strong> is missing, install Scrippy again.</p>
+<h3>A file cannot be converted</h3>
+<p>SIPS can read some formats it cannot write, and some files are damaged or are not images at all. The menu only lists formats your Mac can write. When a conversion fails, <strong>Show Log</strong> in the alert shows the log in Finder, and the log gives the reason SIPS reported.</p>
+<h3>The copy could not be saved</h3>
+<p>Scrippy saves each copy beside its original, so the folder must allow changes. Images on a disk image, a locked folder, or a read-only network share cannot be converted where they are. Copy them somewhere you can write to first.</p>
+<h3>The estimate did not match the result</h3>
+<p>Estimates come from one sample image, and compression depends on what each picture contains. A group of very different images can come out larger or smaller than estimated.</p>
+<h3>Scrippy.app could not be found</h3>
+<p>The Finder actions look for the app in the Applications folder inside your home folder, or in the main Applications folder. If you moved it elsewhere, move it back to one of those, or install Scrippy again.</p>
+</section>
+<section id="privacy-and-security" aria-labelledby="privacy-and-security-title">
+<h2 id="privacy-and-security-title">Privacy and security</h2>
+<p>Everything happens on your Mac. Scrippy makes no network connections, collects nothing, and has no updater. Links in the app and in this help, such as the release page and the license, open in your browser only when you click them.</p>
+<ul><li>Copies are written to a private folder first and moved into place in one step, so a half written file is never left behind and an existing file is never replaced.</li><li>Scrippy asks for no special permissions. macOS may ask once whether Scrippy can use a protected folder such as Desktop or Documents.</li><li>The log at <code>~/Library/Logs/Scrippy/scrippy.log</code> records failed conversions, including the names of the files involved, and trims itself back once it passes one megabyte.</li></ul>
+</section>
+<section id="uninstalling-scrippy" aria-labelledby="uninstalling-scrippy-title">
+<h2 id="uninstalling-scrippy-title">Uninstalling Scrippy</h2>
+<p>Choose <strong>Uninstall Scrippy</strong> from the Scrippy menu while Scrippy is open. After you confirm, Scrippy moves its Finder actions, the app, its support folder with the conversion script, help, and example image, and its log to the Trash. Your own images and every converted copy stay where they are.</p>
+<p>You can also download the uninstaller package, <code>Uninstall-Scrippy-__VERSION__.pkg</code>, from the <a href="https://github.com/drabhikroy/scrippy/releases/latest" rel="noopener noreferrer">Scrippy releases page</a> and open it. It removes the same items. Installer names its last button <strong>Install</strong>, which runs the removal.</p>
+<p>To remove it by hand instead, move these to the Trash.</p>
+<ul><li>The workflows ending in <strong>with Scrippy</strong> in <code>~/Library/Services</code></li><li>The <strong>Scrippy</strong> folder in <code>~/Library/Application Support</code></li><li>The <strong>Scrippy</strong> folder in <code>~/Library/Logs</code></li><li><strong>Scrippy</strong> in the Applications folder in your home folder</li></ul>
+</section>
+<section id="version-and-license" aria-labelledby="version-and-license-title">
+<h2 id="version-and-license-title">Version and license</h2>
+<p>This is Scrippy version __VERSION__. The newest version is always on the <a href="https://github.com/drabhikroy/scrippy/releases/latest" rel="noopener noreferrer">Scrippy releases page</a>.</p>
+<p>Copyright 2026 Abhik Roy. Scrippy is released under the <a href="https://polyformproject.org/licenses/noncommercial/1.0.0" rel="noopener noreferrer">PolyForm Noncommercial License 1.0.0</a>. Personal use, personal study, hobby projects, teaching, academic research, and use by charitable, educational, nonprofit, public research, public health, and government organizations are permitted. Commercial use is not permitted without a separate license.</p>
+<p>Scrippy is provided as is, without warranty of any kind. Keep your originals until you have checked the converted copies.</p>
+<p>Scrippy is an independent project with no affiliation with Apple. Apple, macOS, and Finder are trademarks of Apple Inc. The source is at <a href="https://github.com/drabhikroy/scrippy" rel="noopener noreferrer">github.com/drabhikroy/scrippy</a>.</p>
+</section>
+<footer><p>Scrippy version __VERSION__. Copyright 2026 Abhik Roy. <a href="https://polyformproject.org/licenses/noncommercial/1.0.0" rel="noopener noreferrer">PolyForm Noncommercial License 1.0.0</a>. <a href="https://github.com/drabhikroy/scrippy/releases/latest" rel="noopener noreferrer">Latest version</a>.</p></footer>
+</main>
+</div>
+</body>
+</html>
